@@ -58,6 +58,9 @@ este carrito de compras versionado 1 tiene como fin preguntar el nombre del clie
 
 ![image](https://user-images.githubusercontent.com/101757213/176053819-ccd250d9-b26b-4999-82a0-3673c08af2ab.png)
 
+![image](https://user-images.githubusercontent.com/101757213/176948186-b6183688-733d-4013-8168-abea2362ac55.png)
+
+
 
 # carrito_V1
 
@@ -107,3 +110,4 @@ el carrito Versionado 2 esta compuesto de dos partes una parte es ingresar datos
 ![image](https://user-images.githubusercontent.com/101757213/176050991-310aa0a3-7707-488c-9056-e7b1469ec149.png)
 
 ![image](https://user-images.githubusercontent.com/101757213/176051278-bd35ff9c-6626-4de5-abbb-e57b2031f04b.png)
+
