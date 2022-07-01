@@ -1,6 +1,7 @@
 //NOMBRE:Daniel felipe sanchez guevara
 //ultima modificacion 22/06/2022
 //V1
+
 // es una plantilla para el objetivo de la creación de objetos de datos según un modelo predefinido.
 class alamcentienda{
     #codigoproducto;
@@ -172,8 +173,9 @@ class compratienda{
     do{
       valor = (prompt('digite codigo del producto'));
         try {
+
           datosproductos.forEach((objeto, index) => {
-            if (objeto.getcodigoproducto === valor){
+            if (objeto.getcodigoproducto === valor && objeto.getalmacenproducto>0){
               this.setcantidadcompra = objeto.getalmacenproducto;
               this.setpreciocompra = objeto.getprecioproducto;
               valor = objeto.getnombreproducto;
@@ -185,23 +187,26 @@ class compratienda{
           if (e !== breakexception) throw e;
         };
         if (sw){
-          console.log("Codigo no existe. ¡Verifique!");
+          confirm("Codigo no existe o elija otro producto en la tienda!");
     }
       }while(sw);
       return valor;
   } 
+  //se crea dato 
   datocantidadproducto(datosproductos){
+    
     let sw = true;
           let valor = "";
           let breakexception = {};
           do {
-              valor = Number(prompt("Digite Número de unidades ==>"));  
-              if (valor <= this.getcantidadcompra){
+              valor = Number(prompt("Digite Número de unidades ==>"));
+              if (valor <= this.getcantidadcompra){  
                     this.setcantidadcompra = valor;
                     //señala un bloque de instrucciones a intentar ( try ), y especifica una respuesta si se produce una excepción
                     try {
                         datosproductos.forEach((objeto, index) => {
                               if (objeto.getnombreproducto === this.getproductocompra){
+                                
                                   objeto.setalmacenproducto = objeto.getalmacenproducto - this.getcantidadcompra;
                                   throw breakexception;
                               };
@@ -251,7 +256,7 @@ class compracarrito{
   }
   nuevoproducto (nombre,datosproductos){
     let producto = new compratienda();
-
+    
     producto.setclientecompra = nombre;
     producto.setproductocompra = producto.datocodigoproducto(datosproductos);
     producto.setcantidadcompra= producto.datocantidadproducto(datosproductos);
@@ -314,10 +319,10 @@ while (confirm('existe un nuevo cliente')){
   do{ 
     productotienda.mostrardatosalmacenados(productotienda.getalmacenproductoscargados());
     canasta.nuevoproducto(nombre,productotienda.getalmacenproductoscargados());
+
   }while(confirm('desea nuevo producto'));
   console.log(canasta.numeroproductos);
   console.log(canasta.carritocompra);
   console.log('nombre del cliente'+ canasta.carritocompra[0].getclientecompra);
   canasta.mostrarcarrito(canasta.carritocompra)
 }
-
