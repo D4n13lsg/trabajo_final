@@ -1,12 +1,14 @@
 //NOMBRE:Daniel felipe sanchez guevara
 //ultima modificacion 22/06/2022
 //V1
+// es una plantilla para el objetivo de la creación de objetos de datos según un modelo predefinido.
 class alamcentienda{
     #codigoproducto;
     #nombreproducto;
     #almacenproducto;
     #precioproducto;
 
+    //es un metodo especial para crear e inicializar un objeto creado a partir de una clase. 
   costructor(){
     this.#codigoproducto='';
     this.#nombreproducto='';
@@ -39,7 +41,7 @@ class alamcentienda{
     }
 
 }
-
+//se crea una clase para que inserten datos al carrito
     class carritoalmacen{
 
       #almacenproducto;
@@ -67,7 +69,6 @@ class alamcentienda{
 
         producto.setcodigoproducto = articulo.toUpperCase();
         do {
-
           articulo=this.datosproducto('digite nombre del producto')
           //touppercase sirve para pasar el articulo a mayuscula
         } while (this.verificarnombreproducto(articulo.toUpperCase()));
@@ -81,7 +82,7 @@ class alamcentienda{
       this.#almacenproducto.push(producto);
       }
     }
-
+    
     datosproducto(mensaje){
       let valor=prompt(mensaje);
       return valor;
@@ -108,6 +109,7 @@ class alamcentienda{
       }
       return
   }
+  //se verifica el nombre del producto
     verificarnombreproducto(nombre){
       let sw=false;
       let breakexception={};
@@ -127,6 +129,7 @@ class alamcentienda{
         sw=false;
       }
     }
+  //muestra la tabla que almacena datos 
     mostrardatosalmacenados(datosproductos){
       let i=0
       console.log ("                                   PRODUCTOS DISPONIBLES - TIENDA ONLINE");
@@ -134,12 +137,13 @@ class alamcentienda{
 
           datosproductos.forEach(producto=>{
           //tofixed sirve para pasar un cadena que no usa notacion exponencial y tiene exactamente degitos despues del decimal
-          console.log('|'+producto.getcodigoproducto+'|'+producto.getnombreproducto+"|"+producto.getalmacenproducto+'|'+(producto.getprecioproducto)+'|')
+          console.log('|      '+producto.getcodigoproducto+'    |   '+producto.getnombreproducto+"    |     "+producto.getalmacenproducto+'    |     '+(producto.getprecioproducto)+'|')
       });
     console.log('');
   }
 }
 // segunda parte
+//se crea una segunda clase madre para la compra de producotos
 class compratienda{
   #clientecompra;
   #productocompra;
@@ -175,14 +179,14 @@ class compratienda{
               valor = objeto.getnombreproducto;
               sw = false;
               throw breakexception;
-         };
+        };
       });
         } catch (e) {
           if (e !== breakexception) throw e;
         };
         if (sw){
           console.log("Codigo no existe. ¡Verifique!");
-     }
+    }
       }while(sw);
       return valor;
   } 
@@ -191,26 +195,27 @@ class compratienda{
           let valor = "";
           let breakexception = {};
           do {
-               valor = Number(prompt("Digite Número de unidades ==>"));  
-               if (valor <= this.getcantidadcompra){
+              valor = Number(prompt("Digite Número de unidades ==>"));  
+              if (valor <= this.getcantidadcompra){
                     this.setcantidadcompra = valor;
+                    //señala un bloque de instrucciones a intentar ( try ), y especifica una respuesta si se produce una excepción
                     try {
-                         datosproductos.forEach((objeto, index) => {
+                        datosproductos.forEach((objeto, index) => {
                               if (objeto.getnombreproducto === this.getproductocompra){
-                                   objeto.setalmacenproducto = objeto.getalmacenproducto - this.getcantidadcompra;
-                                   throw breakexception;
+                                  objeto.setalmacenproducto = objeto.getalmacenproducto - this.getcantidadcompra;
+                                  throw breakexception;
                               };
-                         });
+                        });
                     } catch (e) {
-                         if (e !== breakexception) throw e;
+                        if (e !== breakexception) throw e;
                     };
                     sw = false;
-               }else{
+              }else{
                     console.log ("Cantidad digitada excede las existencias. ¡Verifique!");
-               };
+              };
           } while (sw);
           return valor;
-     }
+    }
     
   
     get getclientecompra(){
@@ -262,7 +267,7 @@ class compracarrito{
 
         carrito.forEach(objeto=>{
           compra+= objeto.calculavalorcompra();
-          console.log('|'+objeto.getproductocompra+'|'+objeto.getcantidadcompra+'|'+objeto.getpreciocompra);
+          console.log('|        '+objeto.getproductocompra+'      |     '+objeto.getcantidadcompra+'    |     '+objeto.getpreciocompra);
         });
         console.log('')
         console.log('el total a pagar es',(compra).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'))
@@ -279,11 +284,11 @@ class compracarrito{
 function setNombreCliente(){
   let nombre=validdato("digite su nombre")
   function validdato(texto){
-       do{
-       let nombre=prompt(texto);
-       if(nombre !=="" &&nombre !==" " && !(!/^[a-z-ñA-Z-Ñ ]*$/g.test(nombre)))
-       return nombre;
-       }while(true);
+      do{
+      let nombre=prompt(texto);
+      if(nombre !=="" &&nombre !==" " && !(!/^[a-z-ñA-Z-Ñ ]*$/g.test(nombre)))
+      return nombre;
+      }while(true);
   }
 return nombre;  
 }
@@ -315,3 +320,4 @@ while (confirm('existe un nuevo cliente')){
   console.log('nombre del cliente'+ canasta.carritocompra[0].getclientecompra);
   canasta.mostrarcarrito(canasta.carritocompra)
 }
+
