@@ -1,4 +1,6 @@
-
+//NOMBRE:Daniel felipe sanchez guevara
+//ultima modificacion 22/06/2022
+//V2
 class ProductoTienda {
      #codigoProducto;
      #nombreProducto;
@@ -182,7 +184,7 @@ class ProductoTienda {
                valor = prompt("Digite Codigo Producto ==> ");
                try {
                     datosProductos.forEach((objeto, index) => {
-                         if (objeto.getCodigoProducto === valor){
+                         if (objeto.getCodigoProducto === valor && objeto.getInventarioProducto>0){
                               this.setCantidadCompra = objeto.getInventarioProducto;
                               this.setPrecioCompra = objeto.getPrecioProducto;
                               valor = objeto.getNombreProducto;
@@ -199,7 +201,9 @@ class ProductoTienda {
           } while (sw); 
           return valor;
      }
+     
      datoCantidadProducto (datosProductos){
+          
           let sw = true;
           let valor = "";
           let BreakException = {};
@@ -207,7 +211,7 @@ class ProductoTienda {
                do{
                valor = Number(prompt("Digite Número de unidades ==>"));
                }while(isNaN(valor) || valor < 1);
-               if (valor <= this.getCantidadCompra){
+               if (valor <= this.getCantidadCompra ){
                     this.setCantidadCompra = valor;
                     try {
                          datosProductos.forEach((objeto, index) => {
@@ -225,7 +229,9 @@ class ProductoTienda {
                };
           } while (sw);
           return valor;
+          
      }
+     
      get getClienteCompra() {
           return this.#clienteCompra;
      }
@@ -250,8 +256,8 @@ class ProductoTienda {
      set setPrecioCompra(value) {
           this.#precioCompra = value;
      }
-   }
-   class CarritoCompra{
+     }
+     class CarritoCompra{
      #productosCarrito;
      constructor(){
           this.#productosCarrito = [];
